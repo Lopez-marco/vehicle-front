@@ -1,0 +1,77 @@
+html {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: white;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.jumbotron {
+  background-image: url(../src/Assets/Car.jpg);
+  background-repeat: no-repeat;
+  background-size: 104vw 40vw;
+  background-position: center;
+  height: 25vw;
+}
+
+.display-3 {
+  text-align: center;
+  color: White;
+  font-weight: 700;
+}
+
+.lead {
+  text-align: center;
+  color: white;
+  font-weight: 600;
+}
+
+.logoname {
+  padding: 10px 10px 10px 50px;
+}
+
+.userlog {
+  padding-right: 50px;
+  color: white
+}
+
+.navco {
+  background-color: #4CB0BD;
+}
+
+.buttonsign {
+  background-color: black;
+}
+
+.navdiv {
+  margin-left: 15px;
+}
+
+.vehiclecard {
+  /* position: relative;
+  bottom: 245px; */
+
+}
+
+.rowcard {
+  margin-right: 11vw;
+}
+
+.cardtext {
+  position: relative;
+}
