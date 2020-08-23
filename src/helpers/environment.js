@@ -9,7 +9,7 @@ switch (window.location.hostname) {
     // this is the deployed react application
     case 'https://git.heroku.com/mal-caroclockfront.git':
         // this is the full url of your deployed API
-        APIURL = 'https://git.heroku.com/mal-caroclock.git'
+        APIURL = 'https://mal-caroclock.herokuapp.com/'
 }
 
 export default APIURL;
