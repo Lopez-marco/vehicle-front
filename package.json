@@ -24,7 +24,6 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "proxy": "https://mal-caroclock.herokuapp.com",
   "eslintConfig": {
     "extends": "react-app"
   },

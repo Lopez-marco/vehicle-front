@@ -17,6 +17,7 @@ import {
 import Auth from "../auth/Auth";
 import LogoutButton from "./LogoutButton";
 import Login from "../auth/Login";
+import Clock from "../Assets/speed.jpg";
 
 const NavbarVeh = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -54,7 +55,7 @@ const NavbarVeh = (props) => {
   return (
     <Navbar className="navco" light expand="md">
       <NavbarBrand className="logoname" href="/">
-        C-O-C
+        {/* Car-<img src={Clock}></img>-Clock */}
       </NavbarBrand>
       <NavbarToggler onClick={toggle} className="mr-2" />
       <Collapse isOpen={isOpen} navbar>
