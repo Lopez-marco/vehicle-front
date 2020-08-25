@@ -157,7 +157,7 @@ const Vehiclesmain = (props) => {
         {buttonLabel}See Full Description
       </Button>
     ) : (
-      <Auth token={sessionToken} />
+      <Auth updateToken={updateToken} />
     );
   };
 

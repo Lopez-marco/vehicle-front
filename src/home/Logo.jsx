@@ -12,7 +12,7 @@ const Logo = (props) => {
     <div>
       <Jumbotron fluid>
         <Container fluid>
-          <h1 className="display-3">The Cash Vehicle</h1>
+          <h1 className="display-3">Car-O-Clock</h1>
           <h5 className="lead">
             A Website to Buy and Sell your Used Vehicle with Cash.
           </h5>

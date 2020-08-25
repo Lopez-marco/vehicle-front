@@ -54,7 +54,7 @@ const NavbarVeh = (props) => {
   return (
     <Navbar className="navco" light expand="md">
       <NavbarBrand className="logoname" href="/">
-        The CV
+        C-O-C
       </NavbarBrand>
       <NavbarToggler onClick={toggle} className="mr-2" />
       <Collapse isOpen={isOpen} navbar>
