@@ -76,7 +76,7 @@ const Navigation = (props) => {
               <MyVehicle token={props.token} />
             </Route>
             <Route exact path="/Create">
-              <Create token={props.token} />
+              <Create updatetoken={props.updateToken} />
             </Route>
             <Route exact path="/">
               <ParentVehicle token={props.token} />
