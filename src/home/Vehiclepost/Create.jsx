@@ -168,6 +168,15 @@ const Create = (props) => {
                 onChange={(e) => setModel(e.target.value)}
               />
             </FormGroup>
+            {/* <FormGroup>
+              <b>Model</b>
+              <Label htmlFor="model" />
+              <Input
+                name="model"
+                value={model}
+                onChange={(e) => setModel(e.target.value)}
+              />
+            </FormGroup>
             <FormGroup>
               <b>Vin</b>
               <Label htmlFor="vin" />
@@ -223,7 +232,7 @@ const Create = (props) => {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
-            </FormGroup>
+            </FormGroup> */}
             <FormGroup>
               <Input
                 type="file"
