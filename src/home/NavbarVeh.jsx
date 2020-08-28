@@ -48,7 +48,7 @@ const NavbarVeh = (props) => {
     return sessionToken === localStorage.getItem("token") ? (
       <LogoutButton clickLogout={clearToken} />
     ) : (
-      <Auth updateToken={updateToken} />
+      <Auth updateToken={props.updateToken} />
     );
   };
 
