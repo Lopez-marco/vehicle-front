@@ -209,9 +209,9 @@ const Create = (props) => {
               <Label htmlFor="photo" />
               <Input
                 name="photo"
-                value={image}
-                placeholder={image}
-                onChange={(e) => setPhoto(e.Input.placeholder)}
+                value={photo}
+                // placeholder={image}
+                onChange={(e) => setPhoto(e.target.value)}
               />
               <Input
                 type="file"
