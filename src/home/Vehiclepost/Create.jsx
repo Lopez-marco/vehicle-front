@@ -228,7 +228,6 @@ const Create = (props) => {
               <Input
                 type="file"
                 name="file"
-                value={photo}
                 placeholder="Upload an image"
                 onChange={uploadImage}
               />
