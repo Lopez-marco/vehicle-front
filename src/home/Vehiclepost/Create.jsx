@@ -213,6 +213,18 @@ const Create = (props) => {
                 // placeholder={image}
                 onChange={(e) => setPhoto(e.target.value)}
               />
+            </FormGroup>
+            <FormGroup>
+              <b>Description</b>
+              <Label htmlFor="description" />
+              <Input
+                type="textarea"
+                name="description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </FormGroup>
+            <FormGroup>
               <Input
                 type="file"
                 name="file"
@@ -226,17 +238,6 @@ const Create = (props) => {
                 <img src={image} style={{ width: "300px" }} />
               )}
             </FormGroup>
-            <FormGroup>
-              <b>Description</b>
-              <Label htmlFor="description" />
-              <Input
-                type="textarea"
-                name="description"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              />
-            </FormGroup>
-            <FormGroup></FormGroup>
             <Button
               type="submit"
               onClick={(event) => (window.location.href = "/")}
