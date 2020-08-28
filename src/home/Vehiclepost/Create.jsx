@@ -126,11 +126,11 @@ const Create = (props) => {
     }
   }, []);
 
-  const updateToken = (newToken) => {
-    localStorage.setItem("token", newToken);
-    setSessionToken(newToken);
-    console.log(sessionToken);
-  };
+  // const updateToken = (newToken) => {
+  //   localStorage.setItem("token", newToken);
+  //   setSessionToken(newToken);
+  //   console.log(sessionToken);
+  // };
 
   return (
     <>
