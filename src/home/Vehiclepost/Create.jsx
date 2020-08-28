@@ -102,7 +102,7 @@ const Create = (props) => {
       }),
       headers: new Headers({
         "Content-Type": "application/json",
-        Authorization: sessionToken,
+        Authorization: props.updateToken,
       }),
     })
       .then((res) => res.json())
