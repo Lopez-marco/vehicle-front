@@ -65,12 +65,6 @@ const Navigation = (props) => {
               </Link>
             </ListGroupItem>
             {usernavigation()}
-            {/* <ListGroupItem tag="a" href="/about-us" action>
-              About us
-            </ListGroupItem>
-            <ListGroupItem tag="a" href="/contact-us" action>
-              Contact us
-            </ListGroupItem> */}
           </ListGroup>
         </Col>
         <Col xs="9">
