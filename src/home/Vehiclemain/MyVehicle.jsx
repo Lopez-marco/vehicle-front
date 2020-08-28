@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Vehiclemain from "./Vehiclesmain";
+import Myvehiclechild from "./MyVehiclechild";
 
 const MyVehicle = (props) => {
   const [vehicle, setVehicle] = useState([]);
@@ -20,6 +20,11 @@ const MyVehicle = (props) => {
       });
   };
 
+  function displayMne() {
+    return vehicle.map((result, index) => (
+      <Myvehiclechild token={sessionToken} key={index} vehicle={result} />
+    ));
+  }
   const [sessionToken, setSessionToken] = useState("");
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -33,12 +38,15 @@ const MyVehicle = (props) => {
     console.log(sessionToken);
   };
 
-  function displayMne() {
-    return vehicle.entries((result, index) => (
-      <Vehiclemain token={sessionToken} key={index} vehicle={result} />
-    ));
-  }
+  // var arr = Object.keys(vehicle);
 
+  // var arrObj = arr.map(function (key) {
+  //   return { [key]: vehicle[key] };
+  // });
+
+  // console.log(arrObj);
+  // console.log(results);
+  // console.log(vehicle);
   // useEffect(() => {
   //   mineVehicle();
   // }, []);
@@ -47,7 +55,6 @@ const MyVehicle = (props) => {
     <div>
       <h1>Test my vehicle</h1>
       <button onClick={displayMne()}>click</button>
-      {/*  */}
     </div>
   );
 };

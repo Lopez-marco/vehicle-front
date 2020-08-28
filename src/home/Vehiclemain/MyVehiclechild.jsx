@@ -21,7 +21,7 @@ import {
   Badge,
 } from "reactstrap";
 import { Route, Link, Switch } from "react-router-dom";
-import Auth from "../../auth/Auth";
+// import Auth from "../../auth/Auth";
 import APIURL from "../../helpers/environment";
 
 const Vehiclesmain = (props) => {
@@ -161,7 +161,7 @@ const Vehiclesmain = (props) => {
         {buttonLabel}See Full Description
       </Button>
     ) : (
-      <Auth updateToken={updateToken} />
+      "" //   <Auth updateToken={updateToken} />
     );
   };
 

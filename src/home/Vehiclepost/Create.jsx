@@ -24,6 +24,64 @@ const Create = (props) => {
   const [description, setDescription] = useState("");
   const [sessionToken, setSessionToken] = useState("");
 
+  // const [fileInputState, setFileInputState] = useState("");
+  // const [selectedFile, setSelectedFile] = useState();
+  // const [previewSource, setPreviewSource] = useState("");
+  // const handlefileInputChange = (e) => {
+  //   const file = e.target.files[0];
+  //   previewFile(file);
+  // };
+  // const previewFile = (file) => {
+  //   const reader = new FileReader();
+  //   reader.readAsDataURL(file);
+  //   reader.onloadend = () => {
+  //     setPreviewSource(reader.result);
+  //   };
+  // };
+
+  // const handleSubmitFile = (e) => {
+  //   e.preventDefault();
+  //   if (!previewSource) return;
+  //   uploadImage(previewSource);
+  // };
+  // const uploadImage = async (base64EncodeImage) => {
+  //   console.log(base64EncodeImage);
+  //   try {
+  //     await fetch("/api/upload", {
+  //       method: "POST",
+  //       body: JSON.stringify({ data: base64EncodeImage }),
+  //       headers: { "Content-Type": "application/json" },
+  //     });
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+  //////////////////////////////////////////////////
+
+  const [image, setImage] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const uploadImage = async (e) => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "dev_setup");
+    setLoading(true);
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/mlpez/image/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
+    const file = await res.json();
+
+    console.log(res);
+    setImage(file.secure_url);
+    setLoading(false);
+  };
+  //////////////////////////////////////////////////
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(props.updateToken);
@@ -145,11 +203,22 @@ const Create = (props) => {
               <Label htmlFor="photo" />
               <Input
                 name="photo"
-                value={photo}
-                onChange={(e) => setPhoto(e.target.value)}
+                value={image}
+                placeholder={image}
+                onChange={(e) => setPhoto(e.Input.placeholder)}
               />
-              "(Image Has to be upload to a external server. Link need to be
-              Provided)"
+              <Input
+                type="file"
+                name="file"
+                value={photo}
+                placeholder="Upload an image"
+                onChange={uploadImage}
+              />
+              {loading ? (
+                <h3>Loading...</h3>
+              ) : (
+                <img src={image} style={{ width: "300px" }} />
+              )}
             </FormGroup>
             <FormGroup>
               <b>Description</b>
@@ -161,6 +230,7 @@ const Create = (props) => {
                 onChange={(e) => setDescription(e.target.value)}
               />
             </FormGroup>
+            <FormGroup></FormGroup>
             <Button
               type="submit"
               onClick={(event) => (window.location.href = "/")}
@@ -173,6 +243,7 @@ const Create = (props) => {
       </Card>
       <br />
       <br />
+      {image}
     </>
   );
 };
