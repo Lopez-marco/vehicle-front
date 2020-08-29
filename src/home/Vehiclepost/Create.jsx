@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useHistory } from "react";
 import {
   Button,
   Form,
@@ -117,6 +117,7 @@ const Create = (props) => {
         setColor("");
         setPhoto("");
         setDescription("");
+        refreshPage();
       });
   };
 
@@ -131,6 +132,9 @@ const Create = (props) => {
   //   setSessionToken(newToken);
   //   console.log(sessionToken);
   // };
+  function refreshPage() {
+    window.location.href = "/";
+  }
 
   return (
     <>
@@ -223,8 +227,7 @@ const Create = (props) => {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
-            </FormGroup>{" "}
-            */}
+            </FormGroup>
             <FormGroup>
               <Input
                 type="file"
@@ -238,12 +241,7 @@ const Create = (props) => {
                 <img src={image} style={{ width: "300px" }} />
               )}
             </FormGroup>
-            <Button
-              type="submit"
-              // onClick={(event) => (window.location.href = "/")}
-            >
-              Click to Submit
-            </Button>
+            <Button type="submit">Click to Submit</Button>
           </Form>
         </Col>
         <br />
