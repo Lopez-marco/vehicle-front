@@ -7,6 +7,7 @@ import ParentVehicle from './home/Vehiclemain/ParentVehicle';
 import { Row, Container, Col, FormGroup, Label, Input, FormText, Form, Button } from "reactstrap"
 import { BrowserRouter as Router, } from 'react-router-dom';
 import Footer from "./home/Footer"
+import Gototop from './home/Gototop';
 
 function App(props) {
   const [updateActive, setUpdateActive] = useState(false);
@@ -46,8 +47,9 @@ function App(props) {
         <Router>
           <Navigation updateToken={updateToken} updateOn={updateOn} />
         </Router>
-      </Container>
+      </Container><br></br>
       <Footer />
+      <Gototop />
     </div>
   );
 }

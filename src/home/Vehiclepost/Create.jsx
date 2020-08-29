@@ -96,7 +96,7 @@ const Create = (props) => {
           price: price,
           millage: millage,
           color: color,
-          photo: photo,
+          photo: image,
           description: description,
         },
       }),
@@ -212,20 +212,11 @@ const Create = (props) => {
               <b>Photo </b>
               <Label htmlFor="photo" />
               <Input
+                disabled
                 name="photo"
-                value={photo}
+                value={image}
                 // placeholder={image}
                 onChange={(e) => setPhoto(e.target.value)}
-              />
-            </FormGroup>
-            <FormGroup>
-              <b>Description</b>
-              <Label htmlFor="description" />
-              <Input
-                type="textarea"
-                name="description"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
               />
             </FormGroup>
             <FormGroup>
@@ -241,6 +232,16 @@ const Create = (props) => {
                 <img src={image} style={{ width: "300px" }} />
               )}
             </FormGroup>
+            <FormGroup>
+              <b>Description</b>
+              <Label htmlFor="description" />
+              <Input
+                type="textarea"
+                name="description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </FormGroup>
             <Button type="submit">Click to Submit</Button>
           </Form>
         </Col>
@@ -248,7 +249,6 @@ const Create = (props) => {
       </Card>
       <br />
       <br />
-      {image}
     </>
   );
 };

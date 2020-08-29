@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Myvehiclechild from "./MyVehiclechild";
+import { Card, CardHeader } from "reactstrap";
 
 const MyVehicle = (props) => {
   const [vehicle, setVehicle] = useState([]);
@@ -10,7 +11,7 @@ const MyVehicle = (props) => {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",
-        Authorization: sessionToken,
+        Authorization: localStorage.getItem("token"),
       }),
     })
       .then((res) => res.json())
@@ -25,6 +26,7 @@ const MyVehicle = (props) => {
       <Myvehiclechild token={sessionToken} key={index} vehicle={result} />
     ));
   }
+
   const [sessionToken, setSessionToken] = useState("");
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -32,11 +34,11 @@ const MyVehicle = (props) => {
     }
   }, []);
 
-  const updateToken = (newToken) => {
-    localStorage.setItem("token", newToken);
-    setSessionToken(newToken);
-    console.log(sessionToken);
-  };
+  // const updateToken = (newToken) => {
+  //   localStorage.setItem("token", newToken);
+  //   setSessionToken(newToken);
+  //   console.log(sessionToken);
+  // };
 
   // var arr = Object.keys(vehicle);
 
@@ -47,14 +49,19 @@ const MyVehicle = (props) => {
   // console.log(arrObj);
   // console.log(results);
   // console.log(vehicle);
-  // useEffect(() => {
-  //   mineVehicle();
-  // }, []);
+  useEffect(() => {
+    mineVehicle();
+  }, []);
 
   return (
     <div>
-      <h1>Test my vehicle</h1>
-      <button onClick={displayMne()}>click</button>
+      <Card>
+        <CardHeader style={{ backgroundColor: "#4CB0BD" }}>
+          <h5 style={{ textAlign: "center" }}>My Added Vehicle's</h5>
+        </CardHeader>
+        <br />
+        {displayMne()}
+      </Card>
     </div>
   );
 };

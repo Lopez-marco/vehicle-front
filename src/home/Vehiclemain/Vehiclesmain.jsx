@@ -82,6 +82,8 @@ const Vehiclesmain = (props) => {
   const [editDescription, setEditDescription] = useState(
     props.vehicle.description
   );
+  const [editMillage, setEditMillage] = useState(props.vehicle.millage);
+  const [editColor, setEditColor] = useState(props.vehicle.color);
 
   const vehicleEdit = (event) => {
     event.preventDefault();
@@ -93,6 +95,8 @@ const Vehiclesmain = (props) => {
           make: editMake,
           model: editModel,
           vin: editVin,
+          color: editColor,
+          millage: editMillage,
           price: editPrice,
           photo: editPhoto,
           description: editDescription,
@@ -102,8 +106,14 @@ const Vehiclesmain = (props) => {
         "Content-Type": "application/json",
         Authorization: sessionToken,
       }),
-    }).then((res) => {});
+    }).then((res) => {
+      refreshPage();
+    });
   };
+
+  function refreshPage() {
+    window.location.href = "/";
+  }
 
   //////////////////////////Edit End/////////////////
   /////////////////////Delete/////////////////////
@@ -330,6 +340,28 @@ const Vehiclesmain = (props) => {
                                     name="vin"
                                     value={editVin}
                                     onChange={(e) => setEditVin(e.target.value)}
+                                  />
+                                </FormGroup>
+                                <FormGroup>
+                                  Millage
+                                  <Label htmlFor="millage" />
+                                  <Input
+                                    name="millage"
+                                    value={editMillage}
+                                    onChange={(e) =>
+                                      setEditMillage(e.target.value)
+                                    }
+                                  />
+                                </FormGroup>
+                                <FormGroup>
+                                  Color
+                                  <Label htmlFor="color" />
+                                  <Input
+                                    name="color"
+                                    value={editColor}
+                                    onChange={(e) =>
+                                      setEditColor(e.target.value)
+                                    }
                                   />
                                 </FormGroup>
                                 <FormGroup>

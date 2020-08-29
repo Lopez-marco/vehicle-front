@@ -102,8 +102,14 @@ const Vehiclesmain = (props) => {
         "Content-Type": "application/json",
         Authorization: sessionToken,
       }),
-    }).then((res) => {});
+    }).then((res) => {
+      refreshPage();
+    });
   };
+
+  function refreshPage() {
+    window.location.reload(true);
+  }
 
   //////////////////////////Edit End/////////////////
   /////////////////////Delete/////////////////////
@@ -365,14 +371,7 @@ const Vehiclesmain = (props) => {
                                     }
                                   />
                                 </FormGroup>
-                                <Button
-                                  type="submit"
-                                  onClick={(event) =>
-                                    (window.location.href = "/")
-                                  }
-                                >
-                                  Click to Submit
-                                </Button>
+                                <Button type="submit">Click to Submit</Button>
                               </Form>
                               <br />
                             </Col>
