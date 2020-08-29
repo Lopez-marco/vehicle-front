@@ -240,7 +240,7 @@ const Create = (props) => {
             </FormGroup>
             <Button
               type="submit"
-              onClick={(event) => (window.location.href = "/")}
+              // onClick={(event) => (window.location.href = "/")}
             >
               Click to Submit
             </Button>
