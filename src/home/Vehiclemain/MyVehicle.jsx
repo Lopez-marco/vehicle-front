@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Myvehiclechild from "./MyVehiclechild";
 import { Card, CardHeader } from "reactstrap";
+import APIURL from "../../helpers/environment";
 
 const MyVehicle = (props) => {
   const [vehicle, setVehicle] = useState([]);
   const [results, setResults] = useState([]);
 
   const mineVehicle = () => {
-    fetch("http://localhost:3000/vehicle/mine", {
+    fetch(`${APIURL}/vehicle/mine`, {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -34,21 +35,6 @@ const MyVehicle = (props) => {
     }
   }, []);
 
-  // const updateToken = (newToken) => {
-  //   localStorage.setItem("token", newToken);
-  //   setSessionToken(newToken);
-  //   console.log(sessionToken);
-  // };
-
-  // var arr = Object.keys(vehicle);
-
-  // var arrObj = arr.map(function (key) {
-  //   return { [key]: vehicle[key] };
-  // });
-
-  // console.log(arrObj);
-  // console.log(results);
-  // console.log(vehicle);
   useEffect(() => {
     mineVehicle();
   }, []);
