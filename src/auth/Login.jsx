@@ -49,6 +49,7 @@ const Login = (props) => {
           <Label htmlFor="password">Password</Label>
           <Input
             onChange={(e) => setPassword(e.target.value)}
+            type="password"
             name="password"
             value={password}
             minlength="5"
