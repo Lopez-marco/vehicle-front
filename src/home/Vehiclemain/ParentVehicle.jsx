@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Vehiclemain from "./Vehiclesmain";
 import { Card, CardHeader } from "reactstrap";
 import APIURL from "../../helpers/environment";
+// import Pagination from "./Pagination";
 
 const ParentVehicle = (props) => {
   const [vehicle, setVehicle] = useState([]);
