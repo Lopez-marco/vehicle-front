@@ -11,11 +11,18 @@ import ContactUs from "./ContactUs";
 
 const Navigation = (props) => {
   const [sessionToken, setSessionToken] = useState("");
+
   useEffect(() => {
     if (localStorage.getItem("token")) {
       setSessionToken(localStorage.getItem("token"));
     }
   }, []);
+
+  const updateToken = (newToken) => {
+    localStorage.setItem("token", newToken);
+    setSessionToken(newToken);
+    console.log(sessionToken);
+  };
 
   const usernavigation = () => {
     return sessionToken === localStorage.getItem("token") ? (
@@ -54,7 +61,7 @@ const Navigation = (props) => {
         <Col xs="9">
           <Switch>
             <Route exact path="/inventory">
-              <ParentVehicle />
+              <ParentVehicle updateToken={props.updateToken} />
             </Route>
             <Route exact path="/myvehicle">
               <MyVehicle token={props.token} />

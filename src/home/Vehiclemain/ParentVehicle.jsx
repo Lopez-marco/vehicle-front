@@ -23,7 +23,11 @@ const ParentVehicle = (props) => {
 
   function displayCards() {
     return vehicle.map((result, index) => (
-      <Vehiclemain token={props.token} key={index} vehicle={result} />
+      <Vehiclemain
+        updateToken={props.updateToken}
+        key={index}
+        vehicle={result}
+      />
     ));
   }
 

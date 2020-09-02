@@ -23,6 +23,7 @@ import APIURL from "../../helpers/environment";
 import ReactHtmlParser from "react-html-parser";
 import CKEditor from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import Auth from "../../auth/Auth";
 
 const Vehiclesmain = (props) => {
   const {
@@ -44,6 +45,12 @@ const Vehiclesmain = (props) => {
       setSessionToken(localStorage.getItem("token"));
     }
   }, []);
+
+  const updateToken = (newToken) => {
+    localStorage.setItem("token", newToken);
+    setSessionToken(newToken);
+    console.log(sessionToken);
+  };
 
   const [setVehicleshow] = useState([]);
   //////////////Vehicule ID/////
@@ -187,7 +194,7 @@ const Vehiclesmain = (props) => {
         {buttonLabel}See Full Description
       </Button>
     ) : (
-      "" //   <Auth updateToken={updateToken} />
+      <Auth updateToken={props.updateToken} />
     );
   };
 
@@ -271,9 +278,6 @@ const Vehiclesmain = (props) => {
                     </ModalBody>
 
                     <ModalFooter>
-                      {/* <Button color="success" onClick={toggle2}>
-                        Contact Seller
-                      </Button> */}
                       <Modal
                         isOpen={modal2}
                         toggle={toggle2}
