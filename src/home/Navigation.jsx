@@ -6,17 +6,7 @@ import MyVehicle from "./Vehiclemain/MyVehicle";
 import UserwithToken from "./UserwithToken";
 import AboutUs from "./AboutUs";
 
-import {
-  ListGroup,
-  ListGroupItem,
-  Card,
-  Button,
-  CardTitle,
-  CardText,
-  Row,
-  Col,
-  Container,
-} from "reactstrap";
+import { ListGroup, ListGroupItem, Row, Col } from "reactstrap";
 import ContactUs from "./ContactUs";
 
 const Navigation = (props) => {
@@ -26,12 +16,6 @@ const Navigation = (props) => {
       setSessionToken(localStorage.getItem("token"));
     }
   }, []);
-
-  const updateToken = (newToken) => {
-    localStorage.setItem("token", newToken);
-    setSessionToken(newToken);
-    console.log(sessionToken);
-  };
 
   const usernavigation = () => {
     return sessionToken === localStorage.getItem("token") ? (

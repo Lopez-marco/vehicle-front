@@ -6,7 +6,6 @@ import APIURL from "../../helpers/environment";
 
 const ParentVehicle = (props) => {
   const [vehicle, setVehicle] = useState([]);
-  const [results, setResults] = useState([]);
 
   const fetchVehicle = () => {
     fetch(`${APIURL}/vehicle/all`, {

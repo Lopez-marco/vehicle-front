@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useHistory } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Form,
@@ -6,11 +6,13 @@ import {
   Label,
   Input,
   Card,
-  Row,
   Col,
   CardHeader,
 } from "reactstrap";
 import APIURL from "../../helpers/environment";
+
+import CKEditor from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 const Create = (props) => {
   const [year, setYear] = useState("");
@@ -97,7 +99,7 @@ const Create = (props) => {
           millage: millage,
           color: color,
           photo: image,
-          description: description,
+          description: value,
         },
       }),
       headers: new Headers({
@@ -135,6 +137,13 @@ const Create = (props) => {
   function refreshPage() {
     window.location.href = "/";
   }
+
+  const [value, setValue] = useState("");
+
+  const handleOnChange = (e, editor) => {
+    const data = editor.getData();
+    setValue(data);
+  };
 
   return (
     <>
@@ -359,12 +368,17 @@ const Create = (props) => {
             </FormGroup>
             <FormGroup>
               <b>Description</b>
-              <Label htmlFor="description" />
+              {/* <Label htmlFor="description" />
               <Input
                 type="textarea"
                 name="description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
+              /> */}
+              <CKEditor
+                editor={ClassicEditor}
+                value={description}
+                onChange={handleOnChange}
               />
             </FormGroup>
             <Button type="submit">Click to Submit</Button>

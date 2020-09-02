@@ -1,16 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Route, Link, Switch } from "react-router-dom";
-import {
-  ListGroup,
-  ListGroupItem,
-  Card,
-  Button,
-  CardTitle,
-  CardText,
-  Row,
-  Col,
-  Container,
-} from "reactstrap";
+import { Link } from "react-router-dom";
+import { ListGroupItem } from "reactstrap";
 
 const UserwithToken = (props) => {
   const [sessionToken, setSessionToken] = useState("");

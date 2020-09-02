@@ -5,19 +5,13 @@ import Signup from "./Signup";
 
 const Auth = (props) => {
   const [sessionToken, setSessionToken] = useState("");
-  const [updateActive, setUpdateActive] = useState(false);
+  const [setUpdateActive] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
       setSessionToken(localStorage.getItem("token"));
     }
   }, []);
-
-  const updateToken = (newToken) => {
-    localStorage.setItem("token", newToken);
-    setSessionToken(newToken);
-    console.log(sessionToken);
-  };
 
   const { buttonLabel, className } = props;
 
@@ -33,9 +27,6 @@ const Auth = (props) => {
 
   const updateOn = () => {
     setUpdateActive(true);
-  };
-  const updateOff = () => {
-    setUpdateActive(false);
   };
 
   const [isLogin, setIsLogin] = useState(true);
@@ -53,7 +44,7 @@ const Auth = (props) => {
 
   function Toggle(e) {
     e.preventDefault();
-    if (isLogin == true) {
+    if (isLogin === true) {
       setIsLogin(false);
     } else {
       setIsLogin(true);

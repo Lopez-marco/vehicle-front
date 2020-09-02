@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Card, CardFooter } from "reactstrap";
+import { Card, CardFooter } from "reactstrap";
 
 const Footer = () => {
   return (

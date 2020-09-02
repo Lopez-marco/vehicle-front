@@ -1,13 +1,7 @@
 import React from "react";
 import { Jumbotron, Container } from "reactstrap";
-import styled from "styled-components";
 
 const Logo = (props) => {
-  const Style = styled.img`
-  z-index: 1
-  width: 100%
-  margin: auto`;
-
   return (
     <div>
       <Jumbotron fluid>

@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import APIURL from "../helpers/environment";
 
 const Signup = (props) => {
-  const [sessionToken, setSessionToken] = useState("");
-
   const [Email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 

@@ -2,15 +2,13 @@ import React, { useEffect, useState } from 'react';
 import NavbarVeh from "./home/NavbarVeh";
 import Logo from "./home/Logo"
 import Navigation from "./home/Navigation"
-import Vehiclesmain from './home/Vehiclemain/Vehiclesmain';
-import ParentVehicle from './home/Vehiclemain/ParentVehicle';
-import { Row, Container, Col, FormGroup, Label, Input, FormText, Form, Button } from "reactstrap"
+import { Container } from "reactstrap"
 import { BrowserRouter as Router, } from 'react-router-dom';
 import Footer from "./home/Footer"
 import Gototop from './home/Gototop';
 
 function App(props) {
-  const [updateActive, setUpdateActive] = useState(false);
+  const [setUpdateActive] = useState(false);
   const [sessionToken, setSessionToken] = useState('');
 
 
@@ -33,9 +31,6 @@ function App(props) {
 
   const updateOn = (props) => {
     setUpdateActive(true);
-  }
-  const updateOff = () => {
-    setUpdateActive(false);
   }
 
 

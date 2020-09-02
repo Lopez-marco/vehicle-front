@@ -6,7 +6,6 @@ import {
   CardImg,
   CardBody,
   CardTitle,
-  CardSubtitle,
   CardText,
   Button,
   Container,
@@ -20,9 +19,10 @@ import {
   Input,
   Badge,
 } from "reactstrap";
-import { Route, Link, Switch } from "react-router-dom";
-// import Auth from "../../auth/Auth";
 import APIURL from "../../helpers/environment";
+import ReactHtmlParser from "react-html-parser";
+import CKEditor from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 const Vehiclesmain = (props) => {
   const {
@@ -31,7 +31,6 @@ const Vehiclesmain = (props) => {
     model,
     description,
     price,
-    id,
     photo,
     color,
     millage,
@@ -46,15 +45,7 @@ const Vehiclesmain = (props) => {
     }
   }, []);
 
-  const updateToken = (newToken) => {
-    localStorage.setItem("token", newToken);
-    setSessionToken(newToken);
-    console.log(sessionToken);
-  };
-
-  const [vehicleshow, setVehicleshow] = useState([]);
-  const [results, setResults] = useState([]);
-
+  const [setVehicleshow] = useState([]);
   //////////////Vehicule ID/////
 
   const fetchVehiclemain = () => {
@@ -79,9 +70,6 @@ const Vehiclesmain = (props) => {
   const [editVin, setEditVin] = useState(props.vehicle.vin);
   const [editPrice, setEditPrice] = useState(props.vehicle.price);
   const [editPhoto, setEditPhoto] = useState(props.vehicle.photo);
-  const [editDescription, setEditDescription] = useState(
-    props.vehicle.description
-  );
 
   const vehicleEdit = (event) => {
     event.preventDefault();
@@ -94,8 +82,8 @@ const Vehiclesmain = (props) => {
           model: editModel,
           vin: editVin,
           price: editPrice,
-          photo: editPhoto,
-          description: editDescription,
+          photo: image,
+          description: value,
         },
       }),
       headers: new Headers({
@@ -112,6 +100,39 @@ const Vehiclesmain = (props) => {
   }
 
   //////////////////////////Edit End/////////////////
+  /////////////////////////////image//////////////////
+  const [image, setImage] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const uploadImage = async (e) => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "dev_setup");
+    setLoading(true);
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/mlpez/image/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
+    const file = await res.json();
+
+    console.log(res);
+    setImage(file.secure_url);
+    setLoading(false);
+  };
+
+  ///////////////////////////image end//////////////////
+  //////////////////////Editor////////////
+  const [value, setValue] = useState("");
+
+  const handleOnChange = (e, editor) => {
+    const data = editor.getData();
+    setValue(data);
+  };
+  ////////////////////editor end//////////////
   /////////////////////Delete/////////////////////
 
   const Delete = () => {
@@ -125,10 +146,6 @@ const Vehiclesmain = (props) => {
       refreshPage();
     });
   };
-
-  function refreshPage() {
-    window.location.reload(true);
-  }
 
   //////////////////////MODAL///////////////////////////////////////////
 
@@ -246,7 +263,7 @@ const Vehiclesmain = (props) => {
                       {millage} <br />
                       <b>Vin: </b> {vin} <br />
                       <b>Description: </b>
-                      {description}
+                      {ReactHtmlParser(description)}
                       <br />
                     </ModalBody>
 
@@ -353,6 +370,7 @@ const Vehiclesmain = (props) => {
                                   Photo
                                   <Label htmlFor="photo" />
                                   <Input
+                                    disabled
                                     name="photo"
                                     value={editPhoto}
                                     onChange={(e) =>
@@ -361,15 +379,36 @@ const Vehiclesmain = (props) => {
                                   />
                                 </FormGroup>
                                 <FormGroup>
+                                  <Input
+                                    type="file"
+                                    name="file"
+                                    placeholder="Upload an image"
+                                    onChange={uploadImage}
+                                  />
+                                  {loading ? (
+                                    <h3>Loading...</h3>
+                                  ) : (
+                                    <img
+                                      src={image}
+                                      style={{ width: "300px" }}
+                                    />
+                                  )}
+                                </FormGroup>
+                                <FormGroup>
                                   Description
-                                  <Label htmlFor="description" />
+                                  <CKEditor
+                                    editor={ClassicEditor}
+                                    value={value}
+                                    onChange={handleOnChange}
+                                  />
+                                  {/* <Label htmlFor="description" />
                                   <Input
                                     name="description"
                                     value={editDescription}
                                     onChange={(e) =>
                                       setEditDescription(e.target.value)
                                     }
-                                  />
+                                  /> */}
                                 </FormGroup>
                                 <Button type="submit">Click to Submit</Button>
                               </Form>

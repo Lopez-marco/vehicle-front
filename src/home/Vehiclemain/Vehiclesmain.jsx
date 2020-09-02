@@ -6,7 +6,6 @@ import {
   CardImg,
   CardBody,
   CardTitle,
-  CardSubtitle,
   CardText,
   Button,
   Container,
@@ -20,9 +19,10 @@ import {
   Input,
   Badge,
 } from "reactstrap";
-import { Route, Link, Switch } from "react-router-dom";
-import Auth from "../../auth/Auth";
 import APIURL from "../../helpers/environment";
+import ReactHtmlParser from "react-html-parser";
+import CKEditor from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 const Vehiclesmain = (props) => {
   const {
@@ -31,7 +31,6 @@ const Vehiclesmain = (props) => {
     model,
     description,
     price,
-    id,
     photo,
     color,
     millage,
@@ -46,15 +45,7 @@ const Vehiclesmain = (props) => {
     }
   }, []);
 
-  const updateToken = (newToken) => {
-    localStorage.setItem("token", newToken);
-    setSessionToken(newToken);
-    console.log(sessionToken);
-  };
-
-  const [vehicleshow, setVehicleshow] = useState([]);
-  const [results, setResults] = useState([]);
-
+  const [setVehicleshow] = useState([]);
   //////////////Vehicule ID/////
 
   const fetchVehiclemain = () => {
@@ -82,8 +73,6 @@ const Vehiclesmain = (props) => {
   const [editDescription, setEditDescription] = useState(
     props.vehicle.description
   );
-  const [editMillage, setEditMillage] = useState(props.vehicle.millage);
-  const [editColor, setEditColor] = useState(props.vehicle.color);
 
   const vehicleEdit = (event) => {
     event.preventDefault();
@@ -95,8 +84,6 @@ const Vehiclesmain = (props) => {
           make: editMake,
           model: editModel,
           vin: editVin,
-          color: editColor,
-          millage: editMillage,
           price: editPrice,
           photo: editPhoto,
           description: editDescription,
@@ -112,10 +99,43 @@ const Vehiclesmain = (props) => {
   };
 
   function refreshPage() {
-    window.location.href = "/";
+    window.location.reload(true);
   }
 
   //////////////////////////Edit End/////////////////
+  /////////////////////////////image//////////////////
+  const [image, setImage] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const uploadImage = async (e) => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "dev_setup");
+    setLoading(true);
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/mlpez/image/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
+    const file = await res.json();
+
+    console.log(res);
+    setImage(file.secure_url);
+    setEditPhoto(file.secure_url);
+    setLoading(false);
+  };
+
+  ///////////////////////////image end//////////////////
+  //////////////////////Editor////////////
+  const handleOnChange = (e, editor) => {
+    const data = editor.getData();
+    //setValue(data);
+    setEditDescription(data);
+  };
+  ////////////////////editor end//////////////
   /////////////////////Delete/////////////////////
 
   const Delete = () => {
@@ -129,10 +149,6 @@ const Vehiclesmain = (props) => {
       refreshPage();
     });
   };
-
-  function refreshPage() {
-    window.location.reload(true);
-  }
 
   //////////////////////MODAL///////////////////////////////////////////
 
@@ -171,7 +187,7 @@ const Vehiclesmain = (props) => {
         {buttonLabel}See Full Description
       </Button>
     ) : (
-      <Auth updateToken={updateToken} />
+      "" //   <Auth updateToken={updateToken} />
     );
   };
 
@@ -250,14 +266,14 @@ const Vehiclesmain = (props) => {
                       {millage} <br />
                       <b>Vin: </b> {vin} <br />
                       <b>Description: </b>
-                      {description}
+                      {ReactHtmlParser(description)}
                       <br />
                     </ModalBody>
 
                     <ModalFooter>
-                      <Button color="success" onClick={toggle2}>
+                      {/* <Button color="success" onClick={toggle2}>
                         Contact Seller
-                      </Button>
+                      </Button> */}
                       <Modal
                         isOpen={modal2}
                         toggle={toggle2}
@@ -343,28 +359,6 @@ const Vehiclesmain = (props) => {
                                   />
                                 </FormGroup>
                                 <FormGroup>
-                                  Millage
-                                  <Label htmlFor="millage" />
-                                  <Input
-                                    name="millage"
-                                    value={editMillage}
-                                    onChange={(e) =>
-                                      setEditMillage(e.target.value)
-                                    }
-                                  />
-                                </FormGroup>
-                                <FormGroup>
-                                  Color
-                                  <Label htmlFor="color" />
-                                  <Input
-                                    name="color"
-                                    value={editColor}
-                                    onChange={(e) =>
-                                      setEditColor(e.target.value)
-                                    }
-                                  />
-                                </FormGroup>
-                                <FormGroup>
                                   Price
                                   <Label htmlFor="price" />
                                   <Input
@@ -382,29 +376,43 @@ const Vehiclesmain = (props) => {
                                     name="photo"
                                     value={editPhoto}
                                     onChange={(e) =>
-                                      setEditPhoto(e.target.value)
+                                      setEditPhoto(e.file.secure_url)
                                     }
                                   />
                                 </FormGroup>
                                 <FormGroup>
+                                  <Input
+                                    type="file"
+                                    name="file"
+                                    placeholder="Upload an image"
+                                    onChange={uploadImage}
+                                  />
+                                  {loading ? (
+                                    <h3>Loading...</h3>
+                                  ) : (
+                                    <img
+                                      src={image}
+                                      style={{ width: "300px" }}
+                                    />
+                                  )}
+                                </FormGroup>
+                                <FormGroup>
                                   Description
-                                  <Label htmlFor="description" />
+                                  <CKEditor
+                                    editor={ClassicEditor}
+                                    data={description}
+                                    onChange={handleOnChange}
+                                  />
+                                  {/* <Label htmlFor="description" />
                                   <Input
                                     name="description"
                                     value={editDescription}
                                     onChange={(e) =>
                                       setEditDescription(e.target.value)
                                     }
-                                  />
+                                  /> */}
                                 </FormGroup>
-                                <Button
-                                  type="submit"
-                                  onClick={(event) =>
-                                    (window.location.href = "/")
-                                  }
-                                >
-                                  Click to Submit
-                                </Button>
+                                <Button type="submit">Click to Submit</Button>
                               </Form>
                               <br />
                             </Col>

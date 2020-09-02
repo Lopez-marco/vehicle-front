@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
-import { Redirect, useHistory } from "react-router-dom";
-import Navigation from "../home/Navigation";
 import APIURL from "../helpers/environment";
 
 const Login = (props) => {
   const [Email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [updateActive, setUpdateActive] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
