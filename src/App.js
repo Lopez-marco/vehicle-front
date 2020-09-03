@@ -33,7 +33,6 @@ function App(props) {
     setUpdateActive(true);
   }
 
-
   return (
     <div className="App">
       <NavbarVeh updateToken={updateToken} clickLogout={clearToken} updateOn={updateOn} />

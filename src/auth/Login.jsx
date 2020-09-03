@@ -5,7 +5,6 @@ import APIURL from "../helpers/environment";
 const Login = (props) => {
   const [Email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const handleSubmit = (event) => {
     event.preventDefault();
     fetch(`${APIURL}/user/signin`, {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Myvehiclechild from "./MyVehiclechild";
 import { Card, CardHeader } from "reactstrap";
 import APIURL from "../../helpers/environment";
+import Vehiclesmain from "./Vehiclesmain";
 
 const MyVehicle = (props) => {
   const [vehicle, setVehicle] = useState([]);
@@ -23,7 +23,7 @@ const MyVehicle = (props) => {
 
   function displayMne() {
     return vehicle.map((result, index) => (
-      <Myvehiclechild token={sessionToken} key={index} vehicle={result} />
+      <Vehiclesmain token={sessionToken} key={index} vehicle={result} />
     ));
   }
 
