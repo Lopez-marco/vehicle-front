@@ -23,6 +23,13 @@ const Vehiclesmain = (props) => {
       setSessionToken(localStorage.getItem("token"));
     }
   }, []);
+
+  const updateToken = (newToken) => {
+    localStorage.setItem("token", newToken);
+    setSessionToken(newToken);
+    console.log(sessionToken);
+  };
+
   ////////////////broken or no image///////////////
   function addDefaultSrc(ev) {
     ev.target.src =
@@ -33,7 +40,7 @@ const Vehiclesmain = (props) => {
     return sessionToken === localStorage.getItem("token") ? (
       <Vehiclemodel vehicle={props.vehicle} />
     ) : (
-      <Auth updateToken={props.updateToken} />
+      <Auth updateToken={updateToken} />
     );
   };
   /////////////////////Badege for not loging user///////

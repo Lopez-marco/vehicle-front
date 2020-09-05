@@ -13,6 +13,12 @@ const Auth = (props) => {
     }
   }, []);
 
+  const updateToken = (newToken) => {
+    localStorage.setItem("token", newToken);
+    setSessionToken(newToken);
+    console.log(sessionToken);
+  };
+
   const { buttonLabel, className } = props;
 
   const [modal, setModal] = useState(false);
