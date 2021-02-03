@@ -52,7 +52,7 @@ const VehicleModalEdit = (props) => {
   };
 
   function refreshPage() {
-    window.location.reload(true);
+    window.location.reload(false);
   }
 
   const [sessionToken, setSessionToken] = useState("");
