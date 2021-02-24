@@ -52,7 +52,7 @@ const Navigation = (props) => {
             </ListGroupItem>
             <ListGroupItem tag="a" action>
               <Link to="/inventory" style={{ textDecoration: "none" }}>
-                Invetory
+                Inventory
               </Link>
             </ListGroupItem>
             {usernavigation()}
