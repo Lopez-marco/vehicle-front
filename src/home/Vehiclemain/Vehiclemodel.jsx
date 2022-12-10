@@ -98,7 +98,7 @@ const Vehiclemodel = (props) => {
             }}
           >
             Delete
-          </Button>{" "}
+          </Button>
           <Button color="secondary" onClick={toggle}>
             Cancel
           </Button>

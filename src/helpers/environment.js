@@ -7,9 +7,9 @@ switch (window.location.hostname) {
         APIURL = 'http://localhost:3000';
         break;
     // this is the deployed react application
-    case 'mal-caroclockfront2.herokuapp.com':
+    case 'strong-dodol-ed1008.netlify.app':
         // this is the full url of your deployed API
-        APIURL = 'https://mal-caroclock.herokuapp.com'
+        APIURL = 'https://ujnrowqydm.us15.qoddiapp.com'
 }
 
 export default APIURL;

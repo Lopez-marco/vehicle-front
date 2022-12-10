@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import {
   Button,
   Form,
@@ -109,7 +109,7 @@ const Create = (props) => {
   return (
     <>
       <Card>
-        <CardHeader style={{ backgroundColor: "#4CB0BD" }}>
+        <CardHeader style={{backgroundColor: "#4CB0BD"}}>
           <h5>Add A Vehicle</h5>
         </CardHeader>
         <br />
@@ -244,7 +244,7 @@ const Create = (props) => {
               {loading ? (
                 <h3>Loading...</h3>
               ) : (
-                <img src={image} style={{ width: "300px" }} />
+                <img src={image} style={{width: "300px"}} />
               )}
             </FormGroup>
             <FormGroup>
