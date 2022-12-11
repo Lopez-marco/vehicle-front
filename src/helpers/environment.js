@@ -9,7 +9,7 @@ switch (window.location.hostname) {
     // this is the deployed react application
     case 'strong-dodol-ed1008.netlify.app':
         // this is the full url of your deployed API
-        APIURL = 'https://ujnrowqydm.us15.qoddiapp.com'
+        APIURL = 'https://binlwxucqe.us15.qoddiapp.com'
 }
 
 export default APIURL;
