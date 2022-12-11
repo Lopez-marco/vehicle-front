@@ -8,17 +8,17 @@ const ParentVehicle = (props) => {
   const [vehicle, setVehicle] = useState([]);
 
   const fetchVehicle = () => {
-    // fetch(`${APIURL}/vehicle/all`, {
-    //   method: "GET",
-    //   headers: new Headers({
-    //     "Content-Type": "application/json",
-    //   }),
-    // })
-    //   .then((res) => res.json())
-    //   .then((results) => {
-    //     setVehicle(results);
-    //     console.log(results);
-    //   });
+    fetch(`${APIURL}/vehicle/all`, {
+      method: "GET",
+      headers: new Headers({
+        "Content-Type": "application/json",
+      }),
+    })
+      .then((res) => res.json())
+      .then((results) => {
+        setVehicle(results);
+        console.log(results);
+      });
   };
 
   function displayCards() {
